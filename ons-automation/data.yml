@@ -1,9 +1,18 @@
 ---
 - hosts: all
-  gather_facts: no
+  gather_facts: yes
 
   vars_files:
   - vars/main.yml
+
+- name: ensure custom facts directory exists.
+  file: path=/etc/ansible/facts.d recurse=yes state=directory
+
+- name: install custom fact module for IP address
+  template: src=ons_facts.sh.j2 dest=/etc/ansible/facts.d/ons_facts.fact mode=0755
+
+- name: reload ansible_local
+  setup: filter=ansible_local
 
   roles:
   - geerlingguy.java
