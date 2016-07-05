@@ -1,0 +1,4 @@
+# Apache Hadoop variables
+
+apache_cassandra_version: 3.7
+apache_cassandra_home: /opt/apache-cassandra

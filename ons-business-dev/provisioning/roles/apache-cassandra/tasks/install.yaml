@@ -1,0 +1,13 @@
+# Apache Cassandra instalation tasks
+
+- name: Download archive
+  get_url: url={{mirrors | random}}/cassandra/{{apache_cassandra_version}}/apache-cassandra-{{apache_cassandra_version}}-bin.tar.gz dest=/opt/apache-cassandra-{{apache_cassandra_version}}.tar.gz force=no
+
+- name: Extract archive
+  unarchive: src=/opt/apache-cassandra-{{apache_cassandra_version}}.tar.gz dest=/opt creates=/opt/apache-cassandra-{{apache_cassandra_version}} owner=root group=root
+
+- name: Create home directory
+  file: src=/opt/apache-cassandra-{{apache_cassandra_version}} dest={{apache_cassandra_home}} state=link
+
+- name: Remove archive
+  file: path=/opt/apache-cassandra-{{apache_cassandra_version}}.tar.gz state=absent
