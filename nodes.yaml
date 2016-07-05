@@ -1,0 +1,25 @@
+---
+
+acs:
+  hostname: acs
+  memory: 2048
+  role: ansible
+  environment: vagrant
+
+es-data:
+  hostname: es-data
+  memory: 2048
+  role: data
+  environment: vagrant
+
+es-master:
+  hostname: es-master
+  memory: 1024
+  role: master
+  environment: vagrant
+
+es-client:
+  hostname: es-client
+  memory: 1024
+  role: client
+  environment: vagrant

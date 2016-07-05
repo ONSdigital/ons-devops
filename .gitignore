@@ -1,0 +1,7 @@
+# OS generated files #
+.DS_Store
+.vagrant
+
+
+# Packages #
+ons-automation/roles/geerlingguy.java
