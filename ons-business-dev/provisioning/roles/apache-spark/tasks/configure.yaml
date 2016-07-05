@@ -1,7 +1,7 @@
 # Apache Spark configuration tasks
 
-- name: Configure spark-env.sh
-  template: src=opt/apache-spark/conf/spark-env.sh dest={{apache_spark_home}}/conf/spark-env.sh owner=root group=root
-
 - name: Install profile variables file
   template: src=etc/profile.d/apache-spark.sh dest=/etc/profile.d/apache-spark.sh owner=root group=root mode=0644
+
+- name: Configure spark-env.sh
+  template: src=opt/apache-spark/conf/spark-env.sh dest={{apache_spark_home}}/conf/spark-env.sh owner=root group=root

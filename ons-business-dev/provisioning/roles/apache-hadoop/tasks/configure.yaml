@@ -1,5 +1,18 @@
 # Apache Hadoop configuration tasks
 
+- name: Install profile variables file
+  template: src=etc/profile.d/apache-hadoop.sh dest=/etc/profile.d/apache-hadoop.sh owner=root group=root mode=0644
+
+- name: Install service unit files
+  template: src=etc/systemd/system/{{item}}.service dest=/etc/systemd/system/{{item}}.service owner=root group=root mode=0644
+  with_items:
+    - dfs-name-node
+    - dfs-data-node
+    - yarn-resource-manager
+    - yarn-node-manager
+  notify:
+    - reload systemd
+
 - name: Set JAVA_HOME environment variable
   lineinfile: dest={{apache_hadoop_home}}/etc/hadoop/hadoop-env.sh regexp="export JAVA_HOME=" line="export JAVA_HOME=/usr/lib/jvm/jre"
 
@@ -37,16 +50,3 @@
 
 - name: Format HDFS name node
   command: "{{apache_hadoop_home}}/bin/hdfs namenode -format creates=/var/local/hadoop/dfs/name"
-
-- name: Install profile variables file
-  template: src=etc/profile.d/apache-hadoop.sh dest=/etc/profile.d/apache-hadoop.sh owner=root group=root mode=0644
-
-- name: Install service unit files
-  template: src=etc/systemd/system/{{item}}.service dest=/etc/systemd/system/{{item}}.service owner=root group=root mode=0644
-  with_items:
-    - dfs-name-node
-    - dfs-data-node
-    - yarn-resource-manager
-    - yarn-node-manager
-  notify:
-    - reload systemd
