@@ -14,7 +14,7 @@ Currently virtual machine is configured to use 2 CPU cores and 4 GB of memory so
 
 ## Software
 
-Beside hardware requirement following tools have to be installed on the host machine prior provisioning development environment:
+Beside hardware requirement the following tools have to be installed on the host machine prior to provisioning development environment:
 
 - VirtualBox (https://www.virtualbox.org)
 - Vagrant (https://www.vagrantup.com)
@@ -57,7 +57,7 @@ sudo -i
 
 It is also possible to access a box using `192.168.33.100` IP address (most of the ports are open from outside).
 
-# What inside the box
+# What's inside the box
 
 ## Installation location
 
@@ -65,7 +65,7 @@ Tools are installed in `/opt` directory. Configuration files are available insid
 
 ## System services
 
-Following services are available and will start automatically at a boot time:
+Following services are available and will start automatically at boot time:
 
 - dfs-name-node
 - dfs-data-node
