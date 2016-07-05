@@ -1,0 +1,19 @@
+# Apache Cassandra configuration tasks
+
+- name: Set RPC address
+  lineinfile: "dest={{apache_cassandra_home}}/conf/cassandra.yaml regexp='^rpc_address:' line='rpc_address: 0.0.0.0'"
+  notify:
+    - restart cassandra
+
+- name: Set RPC broadcast address
+  lineinfile: "dest={{apache_cassandra_home}}/conf/cassandra.yaml regexp='^(# )?broadcast_rpc_address:' line='broadcast_rpc_address: localhost'"
+  notify:
+    - restart cassandra
+
+- name: Install profile variables file
+  template: src=etc/profile.d/apache-cassandra.sh dest=/etc/profile.d/apache-cassandra.sh owner=root group=root mode=0644
+
+- name: Install service unit file
+  template: src=etc/systemd/system/apache-cassandra.service dest=/etc/systemd/system/apache-cassandra.service owner=root group=root mode=0644
+  notify:
+    - reload systemd

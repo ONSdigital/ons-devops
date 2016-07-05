@@ -1,0 +1,52 @@
+# Apache Hadoop configuration tasks
+
+- name: Set JAVA_HOME environment variable
+  lineinfile: dest={{apache_hadoop_home}}/etc/hadoop/hadoop-env.sh regexp="export JAVA_HOME=" line="export JAVA_HOME=/usr/lib/jvm/jre"
+
+- name: Configure core-site.xml
+  template: src=opt/apache-hadoop/etc/hadoop/core-site.xml dest={{apache_hadoop_home}}/etc/hadoop/core-site.xml owner=root group=root
+  notify:
+    - restart dfs-name-node
+    - restart dfs-data-node
+    - restart yarn-resource-manager
+    - restart yarn-node-manager
+
+- name: Configure hdfs-site.xml
+  template: src=opt/apache-hadoop/etc/hadoop/hdfs-site.xml dest={{apache_hadoop_home}}/etc/hadoop/hdfs-site.xml owner=root group=root
+  notify:
+    - restart dfs-name-node
+    - restart dfs-data-node
+    - restart yarn-resource-manager
+    - restart yarn-node-manager
+
+- name: Configure mapred-site.xml
+  template: src=opt/apache-hadoop/etc/hadoop/mapred-site.xml dest={{apache_hadoop_home}}/etc/hadoop/mapred-site.xml owner=root group=root
+  notify:
+    - restart dfs-name-node
+    - restart dfs-data-node
+    - restart yarn-resource-manager
+    - restart yarn-node-manager
+
+- name: Configure yarn-site.xml
+  template: src=opt/apache-hadoop/etc/hadoop/yarn-site.xml dest={{apache_hadoop_home}}/etc/hadoop/yarn-site.xml owner=root group=root
+  notify:
+    - restart dfs-name-node
+    - restart dfs-data-node
+    - restart yarn-resource-manager
+    - restart yarn-node-manager
+
+- name: Format HDFS name node
+  command: "{{apache_hadoop_home}}/bin/hdfs namenode -format creates=/var/local/hadoop/dfs/name"
+
+- name: Install profile variables file
+  template: src=etc/profile.d/apache-hadoop.sh dest=/etc/profile.d/apache-hadoop.sh owner=root group=root mode=0644
+
+- name: Install service unit files
+  template: src=etc/systemd/system/{{item}}.service dest=/etc/systemd/system/{{item}}.service owner=root group=root mode=0644
+  with_items:
+    - dfs-name-node
+    - dfs-data-node
+    - yarn-resource-manager
+    - yarn-node-manager
+  notify:
+    - reload systemd
