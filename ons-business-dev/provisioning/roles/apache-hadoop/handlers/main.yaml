@@ -10,7 +10,7 @@
   service: name=dfs-data-node state=restarted
 
 - name: restart yarn-resource-manager
-  action: name=yarn-resource-manager state=restarted
+  service: name=yarn-resource-manager state=restarted
 
 - name: restart yarn-node-manager
-  action: name=yarn-node-manager state=restarted
+  service: name=yarn-node-manager state=restarted
