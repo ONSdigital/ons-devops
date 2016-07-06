@@ -11,7 +11,7 @@
 
   tasks:
   - name: Install Cassandra python driver
-    pip: requirements=scripts/requirements.txt
+    pip: requirements=/vagrant/scripts/requirements.txt
 
   - name: Create Business Index datastore
-    command: python scripts/create_datastore.py
+    command: python /vagrant/scripts/create_datastore.py

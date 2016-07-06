@@ -8,5 +8,11 @@
     - vim
     - mc
 
+- name: Upgrade to latest version of pip
+  command: "pip install -U pip"
+  become: yes
+  register: pip_latest_output
+  changed_when: pip_latest_output.stdout.find('Requirement already up-to-date') == -1
+
 - name: Install Java JDK
   yum: name=java-1.8.0-openjdk state=latest
