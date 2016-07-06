@@ -1,3 +1,7 @@
 ---
   ansible_distribution: RedHat
   ansible_os_family: RedHat
+
+
+firewall_allowed_tcp_ports:
+  - "50070"

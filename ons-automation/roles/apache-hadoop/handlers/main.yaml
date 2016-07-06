@@ -1,0 +1,16 @@
+# Apache Hadoop handlers
+
+- name: reload systemd
+  command: systemctl daemon-reload
+
+- name: restart dfs-name-node
+  service: name=dfs-name-node state=restarted
+
+- name: restart dfs-data-node
+  service: name=dfs-data-node state=restarted
+
+- name: restart yarn-resource-manager
+  action: name=yarn-resource-manager state=restarted
+
+- name: restart yarn-node-manager
+  action: name=yarn-node-manager state=restarted

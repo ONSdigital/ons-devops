@@ -1,0 +1,15 @@
+# Apache Hadoop tasks
+
+- name: Check package is installed
+  stat: path={{apache_hadoop_home}}
+  register: home
+
+- name: Include installation tasks
+  include: install.yaml
+  when: not home.stat.exists
+
+- name: Include configuration tasks
+  include: configure.yaml
+
+- name: Include service tasks
+  include: service.yaml

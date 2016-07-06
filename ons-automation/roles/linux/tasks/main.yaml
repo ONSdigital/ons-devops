@@ -1,0 +1,12 @@
+# Linux related tasks
+
+- name: Install useful tools
+  yum: name={{item}} state=latest
+  with_items:
+    - python-pip
+    - net-tools
+    - vim
+    - mc
+
+- name: Install Java JDK
+  yum: name=java-1.8.0-openjdk state=latest

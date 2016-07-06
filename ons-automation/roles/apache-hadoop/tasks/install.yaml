@@ -1,0 +1,10 @@
+# Apache Hadoop instalation tasks
+
+- name: Download and extract archive
+  unarchive: src={{mirrors | random}}/hadoop/common/hadoop-{{apache_hadoop_version}}/hadoop-{{apache_hadoop_version}}.tar.gz dest=/opt creates=/opt/hadoop-{{apache_hadoop_version}} copy=no owner=root group=root
+
+- name: Rename extracted directory
+  command: mv /opt/hadoop-{{apache_hadoop_version}} /opt/apache-hadoop-{{apache_hadoop_version}} creates=/opt/apache-hadoop-{{apache_hadoop_version}}
+
+- name: Create home directory
+  file: src=/opt/apache-hadoop-{{apache_hadoop_version}} dest={{apache_hadoop_home}} state=link
