@@ -10,7 +10,7 @@ This purpose of this project is to provide local development environment with fo
 
 ## Hardware
 
-Currently virtual machine is configured to use 2 CPU cores and 4 GB of memory so these have to be available on the host machine.
+Currently virtual machine is configured to use 2 CPU cores and 6 GB of memory so these have to be available on the host machine.
 
 ## Software
 
