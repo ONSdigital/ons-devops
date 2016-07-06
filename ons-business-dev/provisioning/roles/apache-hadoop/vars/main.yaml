@@ -1,4 +1,0 @@
-# Apache Hadoop variables
-
-apache_hadoop_version: 2.6.4
-apache_hadoop_home: /opt/apache-hadoop

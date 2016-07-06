@@ -6,3 +6,6 @@
 # Packages #
 ons-automation/roles/geerlingguy.java
 ons-automation/roles/geerlingguy.elasticsearch
+ons-automation/roles/geerlingguy.firewall
+ons-automation/roles/elasticsearch
+pcfdev

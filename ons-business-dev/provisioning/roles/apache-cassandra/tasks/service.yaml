@@ -1,4 +1,0 @@
-# Apache Cassandra service tasks
-
-- name: Enable and ensure service is started
-  service: name=apache-cassandra enabled=yes state=started

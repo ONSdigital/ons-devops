@@ -1,7 +1,0 @@
-# Apache Cassandra handlers
-
-- name: reload systemd
-  command: systemctl daemon-reload
-
-- name: restart cassandra
-  service: name=apache-cassandra state=restarted

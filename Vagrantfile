@@ -6,6 +6,7 @@ nodes = YAML.load_file('nodes.yaml')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "geerlingguy/centos7"
+  #config.vm.box = "centos/7"
   config.ssh.insert_key = false
   nodes.each do |server,cfgOptions|
 
@@ -18,6 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       node.vm.provider "virtualbox" do |v|
         v.name = cfgOptions['hostname']
         v.memory = cfgOptions['memory']
+        v.cpus = cfgOptions['vcpu']
       end
 
       node.vm.provision "ansible_local" do |ansible|

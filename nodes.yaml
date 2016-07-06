@@ -9,17 +9,27 @@ acs:
 es-data:
   hostname: es-data
   memory: 2048
+  vcpu: 2
   role: data
   environment: vagrant
 
 es-master:
   hostname: es-master
   memory: 1024
+  vcpu: 1
   role: master
   environment: vagrant
 
 es-client:
   hostname: es-client
   memory: 1024
+  vcpu: 1
   role: client
+  environment: vagrant
+
+ons-business-dev:
+  hostname: ons-business-dev
+  memory: 4096
+  vcpu: 2
+  role: ons-business-dev
   environment: vagrant

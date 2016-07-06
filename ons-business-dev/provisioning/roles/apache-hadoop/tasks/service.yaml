@@ -1,9 +1,0 @@
-# Apache Hadoop service tasks
-
-- name: Enable and ensure service is started
-  service: name={{item}} enabled=true state=started
-  with_items:
-    - dfs-name-node
-    - dfs-data-node
-    - yarn-resource-manager
-    - yarn-node-manager
