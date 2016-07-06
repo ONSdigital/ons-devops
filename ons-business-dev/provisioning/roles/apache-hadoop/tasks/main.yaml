@@ -13,3 +13,6 @@
 
 - name: Include service tasks
   include: service.yaml
+
+- name: Include DFS structure tasks
+  include: dfs-structure.yaml
