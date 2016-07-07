@@ -14,12 +14,14 @@ This will also serve the installation of elasticsearch (Data,Master and CLient n
 
 The use of CPU and RAM is configurable via nodes.yaml configuration file. e.g.
 
+```
 ons-business-dev:
   hostname: ons-business-dev
   memory: 4096
   vcpu: 2
   role: ons-business-dev
   environment: vagrant
+```
 
 ## Software
 
