@@ -1,0 +1,21 @@
+---
+- hosts: all
+  vars:
+    mirrors: ["http://apache.mirror.anlx.net/", "http://www.mirrorservice.org/sites/ftp.apache.org/"]
+
+  roles:
+  - linux
+  - { role: apache-hadoop, apache_hadoop_version: 2.6.4 }
+  - { role: apache-spark, apache_spark_version: 1.6.1 }
+  - { role: apache-cassandra, apache_cassandra_version: 3.7 }
+
+  tasks:
+  - name: Install Cassandra python driver
+    pip: requirements=/vagrant/scripts/requirements.txt
+
+  - name: Create Business Index datastore
+    command: python /vagrant/scripts/create_datastore.py
+    register: result
+    until: result.rc == 0
+    retries: 5
+    delay: 2

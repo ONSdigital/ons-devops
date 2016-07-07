@@ -1,0 +1,33 @@
+# ======================== Elasticsearch Configuration =========================
+#
+# NOTE: Elasticsearch comes with reasonable defaults for most settings.
+#       Before you set out to tweak and tune the configuration, make sure you
+#       understand what are you trying to accomplish and the consequences.
+#
+# The primary way of configuring a node is via this file. This template lists
+# the most important settings you may want to configure for a production cluster.
+#
+# Please see the documentation for further information on configuration options:
+# <http://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration.html>
+#
+# ---------------------------------- Cluster -----------------------------------
+#
+
+cluster.name: {{ elasticsearch_cluster_name }}
+network.host: {{ elasticsearch_network_host }}
+node.name: ${HOSTNAME}
+bootstrap.mlockall: {{ elasticsearch_memory_bootstrap_mlockall }}
+discovery.zen.minimum_master_nodes: {{ elasticsearch_discovery_zen_minimum_master_nodes }}
+gateway.recover_after_nodes: {{ elasticsearch_gateway_recover_after_nodes }}
+gateway.expected_nodes: {{ elasticsearch_gateway_expected_nodes }}
+gateway.recover_after_time: {{ elasticsearch_gateway_recover_after_time }}
+discovery.zen.ping.multicast.enabled: {{ elasticsearch_discovery_zen_ping_multicast_enabled }}
+
+discovery.zen.ping.unicast.hosts: {{ elasticsearch_discovery_zen_ping_unicast_hosts }}
+
+node.master: {{ elasticsearch_node_master }}
+node.data: {{ elasticsearch_node_data }}
+node.client: {{ elasticsearch_node_client }}
+
+http.enabled: {{ elasticsearch_network_http_enabled }}
+

@@ -1,0 +1,11 @@
+---
+  elasticsearch_heap_size: 1g
+  elasticsearch_cluster_name: development
+  elasticsearch_network_host: "['_enp0s8_', '_local_']"
+  elasticsearch_memory_bootstrap_mlockall: 'true'
+  elasticsearch_discovery_zen_minimum_master_nodes: 2
+  elasticsearch_gateway_recover_after_nodes: 8
+  elasticsearch_gateway_expected_nodes: 9
+  elasticsearch_gateway_recover_after_time: 3m
+  elasticsearch_discovery_zen_ping_multicast_enabled: 'false'
+  elasticsearch_discovery_zen_ping_unicast_hosts: "['{{ ansible_hostname }}']"

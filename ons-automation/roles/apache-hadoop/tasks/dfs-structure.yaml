@@ -1,10 +1,9 @@
-# Apache Hadoop DFS structure tasks
-
+---
 - name: Check /user/vagrant directory exists in HDFS
   command: "{{apache_hadoop_home}}/bin/hadoop fs -test -e /user/vagrant"
   register: test
   failed_when: "test.rc not in [0, 1]"
 
 - name: Create /user/vagrant directory in HDFS
-  shell: "{{apache_hadoop_home}}/bin/hadoop fs -mkdir -p /user/vagrant && {{apache_hadoop_home}}/bin/hadoop fs -chown vagrant /user/vagrant"
+  shell: "{{apache_hadoop_home}}/bin/hadoop fs -mkdir -p /user/vagrant && {{apache_hadoop_home}}/bin/hadoop fs -chown vagrant /user/vagrant" 
   when: test.rc != 0

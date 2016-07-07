@@ -1,0 +1,14 @@
+---
+- name: Configure Elasticsearch system configuration.
+  template: src=elasticsearch.j2 dest=/etc/sysconfig/elasticsearch owner=root group=root mode=0644
+  notify: restart elasticsearch
+
+- name: Configure Elasticsearch.
+  template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml owner=root group=root mode=0644
+  notify: restart elasticsearch
+
+- name: Configure systemd service for Elasticsearch
+  template: src=elasticsearch.service.j2 dest=/usr/lib/systemd/system/elasticsearch.service
+  notify: 
+  - reload daemon
+  - restart elasticsearch

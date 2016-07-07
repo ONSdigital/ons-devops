@@ -6,20 +6,16 @@ acs:
   role: ansible
   environment: vagrant
 
-es-data:
-  hostname: es-data
+es-standalone:
+  hostname: es-standalone
   memory: 2048
-  role: data
+  vcpu: 2
+  role: es-standalone
   environment: vagrant
 
-es-master:
-  hostname: es-master
-  memory: 1024
-  role: master
-  environment: vagrant
-
-es-client:
-  hostname: es-client
-  memory: 1024
-  role: client
+ons-business-dev:
+  hostname: ons-business-dev
+  memory: 6144
+  vcpu: 2
+  role: ons-business-dev
   environment: vagrant

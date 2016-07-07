@@ -2,7 +2,7 @@
 <configuration>
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>192.168.33.100</value>
+    <value>{{ ansible_enp0s8['ipv4']['address'] }}</value>
   </property>
   <property>
     <name>yarn.nodemanager.aux-services</name>

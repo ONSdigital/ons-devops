@@ -12,6 +12,8 @@
     - yarn-node-manager
   notify:
     - reload systemd
+    - restart dfs-name-node
+    - restart dfs-data-node
 
 - name: Set JAVA_HOME environment variable
   lineinfile: dest={{apache_hadoop_home}}/etc/hadoop/hadoop-env.sh regexp="export JAVA_HOME=" line="export JAVA_HOME=/usr/lib/jvm/jre"

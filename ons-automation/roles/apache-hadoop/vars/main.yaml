@@ -2,3 +2,6 @@
 
 apache_hadoop_version: 2.6.4
 apache_hadoop_home: /opt/apache-hadoop
+
+firewall_allowed_tcp_ports:
+  - "50070"
