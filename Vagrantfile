@@ -5,12 +5,13 @@ require 'yaml'
 nodes = YAML.load_file('nodes.yaml')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "geerlingguy/centos7"
+  #config.vm.box = "geerlingguy/centos7"
   #config.vm.box = "centos/7"
   config.ssh.insert_key = false
   nodes.each do |server,cfgOptions|
 
     config.vm.define server do |node|
+      node.vm.box = cfgOptions['vagrantbox']
 
       node.vm.hostname = cfgOptions['hostname']
       node.vm.network "private_network", type: "dhcp"
@@ -25,6 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       node.vm.provision "ansible_local" do |ansible|
         ansible.verbose = "v"
         ansible.sudo = true
+        ansible.inventory_path = "ons-automation/development/"
         ansible.galaxy_role_file = "requirements.yml"
         ansible.playbook = "ons-automation/#{cfgOptions['role']}.yml"
       end

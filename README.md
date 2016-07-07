@@ -1,83 +1,95 @@
-# Overview
+## ONS-Registers Vagrant Environment Setup
 
-This purpose of this vagrant project is to provide local development environment for Registers project with following tools installed:
+The purpose of this project is to provide the capability to provision vagrant hosted environments (e.g development) for ONS Registers project. 
+ONS Registers project comprises of 2 separate streams:
 
-- Apache Hadoop
-- Apache Spark
-- Apache Cassandra
+- Address Index
+- Business Index
 
-This will also serve the installation of elasticsearch (Data,Master and CLient nodes) to test the elasticsearch configuration and automation using Ansible.
+This Vagrant provisioning will cater both the needs.
 
-# Requirements
+## Pre-requisites
 
-## Hardware
+- Vagrant (https://www.vagrantup.com/downloads.html)
+- Virtualbox (https://www.virtualbox.org/wiki/Downloads)
 
-The use of CPU and RAM is configurable via nodes.yaml configuration file. e.g.
+Note: It is recommended to use latest version of Vagrant i.e. >= 1.8.4, as earlier versions had issues with Ansible 2.0.
+
+## Important files:
+
+ - nodes.yml: The file contains all the details of the nodes which you can provision via vagrant up <nodename> command. For more details see the comments in the file https://github.com/ONSdigital/ons-devops/blob/master/nodes.yaml .
+ - ons-automation/development/inventory_dev: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
+
+## ONS Business Index environment
+----------------------------------
+
+ONS Business Index development environment includes following tools to be setup:
+
+- Apache Hadoop  (http://hadoop.apache.org/)
+- Apache Spark  (http://spark.apache.org/)
+- Apache Cassandra  (http://cassandra.apache.org/)
+
+## Hardware Requirements
+Installing the above tools can be resource heavy. A typical setup requires, 4Gb of RAM and 2 Cores CPU. For the sake of simplicity the CPU and RAM
+is made configurable via nodes.yaml file and can be modified as below:
 
 ```
 ons-business-dev:
   hostname: ons-business-dev
-  memory: 4096
-  vcpu: 2
+  memory: 6144   (Can be modified as per the requirements)
+  vcpu: 2        (Can be modified as per the requirements)
   role: ons-business-dev
   environment: vagrant
 ```
 
-## Software
+NOTE: In the above configuration ROLE is very important as this will decide which ansible playbook to execute. It should not be modified unless a custom 
+playbook with the same name has been provided. Following roles can be provided to a vagrant box:
 
-Beside hardware requirement the following tools have to be installed on the host machine prior to provisioning development environment:
+- ons-business-dev     (ONS Business Index development environment)
+- es-standalone        (Elasticsearch standalone installation) 
+- data                 (Elasticsearch Data node)
+- client               (Elasticsearch client node)
+- master               (Elasticsearch master node)
 
-- VirtualBox (https://www.virtualbox.org)
-- Vagrant (https://www.vagrantup.com)
-
-Note: It is recommended to use latest version of Vagrant (1.8.4) as earlier versions had issues with Ansible 2.0 (https://www.ansible.com).
-
-# How to use it
+# Usage example
 
 ## Provisioning environment for the first time
 
-To provision development environment from scratch please execute following command from project root directory:
+Start the development VM (creating it if necessary):
 
 ```
-vagrant up ons-business-dev
-```
-To spin up elasticsearch data node
-
-```
-vagrant up es-data
+$ vagrant up ons-business-dev
 ```
 
-Above command will download latest CentOS 7 image (https://atlas.hashicorp.com/centos/boxes/7) and provision environment using `ons-automation/ons-business-dev.yml` playbook.
-The usage of the box is also configurable in Vagrantfile via 
-config.vm.box = "geerlingguy/centos7" or config.vm.box = "centos/7"
-
-## Provisioning environment later on
-
-Provisioning can be executed at any time using following command from project root directory:
+## Log in to the development VM
 
 ```
-vagrant rsync && vagrant provision
+$ vagrant ssh ons-business-dev
 ```
 
-# How to get inside the box
-
-To get inside the box execute following command from project root directory.
-
-```
-vagrant ssh ons-business-dev
-```
-
-Above command will log you in as a default `vagrant` user. To acquire root access execute following command (no password required):
+Above command will use the default 'vagrant' user to log in. In order to acquire root access execute any of the commmands below (no password required):
 
 ```
 sudo -i
+```
+
+or 
+
+```
+sudo su
+```
+
+## Update and apply the ansible code to the development vagrant box e.g. ons-business-dev
+
+```
+vagrant provision ons-business-dev
 ```
 
 # What's inside the box
 
 ## Installation location
 
-Tools are installed in `/opt` directory. Configuration files are available inside installation directories.
+Tools are installed in `/opt` directory.
 
 ## System services
 
@@ -89,10 +101,16 @@ Following services are available and will start automatically at boot time:
 - yarn-node-manager
 - apache-cassandra
 
-To manage above services use `service` command, for example:
+To manage above services use `service` or 'systemctl' command, for example:
 
 ```
 service dfs-name-node restart
+```
+
+or
+
+```
+systemctl restart dfs-name-node
 ```
 
 ## HDFS configuration
