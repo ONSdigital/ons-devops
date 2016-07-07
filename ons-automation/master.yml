@@ -2,9 +2,6 @@
 - hosts: all
   gather_facts: no
 
-  vars_files:
-  - vars/master.yml
-
   roles:
   - geerlingguy.java
   - geerlingguy.elasticsearch

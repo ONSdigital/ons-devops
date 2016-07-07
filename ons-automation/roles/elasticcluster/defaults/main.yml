@@ -9,7 +9,3 @@
   elasticsearch_gateway_recover_after_time: 3m
   elasticsearch_discovery_zen_ping_multicast_enabled: 'false'
   elasticsearch_discovery_zen_ping_unicast_hosts: "['{{ ansible_hostname }}']"
-  elasticsearch_node_master: 'false'
-  elasticsearch_node_client: 'false'
-  elasticsearch_node_data: 'true'
-  elasticsearch_network_http_enabled: 'true'

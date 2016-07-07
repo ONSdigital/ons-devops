@@ -5,4 +5,4 @@
   roles:
   - geerlingguy.java
   - geerlingguy.elasticsearch
-  - ons.elasticonf
+  - elasticcluster
