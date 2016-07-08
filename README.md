@@ -17,8 +17,8 @@ Note: It is recommended to use latest version of Vagrant i.e. >= 1.8.4, as earli
 
 ## Important files:
 
- - nodes.yml: The file contains all the details of the nodes which you can provision via vagrant up <nodename> command. For more details see the comments in the file https://github.com/ONSdigital/ons-devops/blob/master/nodes.yaml .
- - ons-automation/development/inventory_dev: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
+ - **nodes.yml**: The file contains all the details of the nodes which you can provision via vagrant up <nodename> command. For more details see the comments in the file https://github.com/ONSdigital/ons-devops/blob/ons-devops-new/nodes.yaml .
+ - **ons-automation/development/inventory_dev**: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
 
 ## ONS Business Index environment
 ----------------------------------
