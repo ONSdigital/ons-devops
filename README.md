@@ -21,7 +21,6 @@ Note: It is recommended to use latest version of Vagrant i.e. >= 1.8.4, as earli
  - ons-automation/development/inventory_dev: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
 
 # ONS Business Index environment
-----------------------------------
 
 ONS Business Index development environment includes following tools to be setup:
 
