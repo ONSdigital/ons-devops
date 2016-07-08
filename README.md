@@ -35,11 +35,14 @@ is made configurable via nodes.yaml file and can be modified as below:
 
 ```
 ons-business-dev:
-  hostname: ons-business-dev
-  memory: 6144   (Can be modified as per the requirements)
-  vcpu: 2        (Can be modified as per the requirements)
-  role: ons-business-dev
-  environment: vagrant
+  box: geerlingguy/centos7
+  server:
+    hostname: ons-business-dev
+    memory: 6144
+    vcpu: 2
+  provisioning:
+    role: ons-business-dev
+    environment: vagrant
 ```
 
 NOTE: In the above configuration ROLE is very important as this will decide which ansible playbook to execute. It should not be modified unless a custom 
