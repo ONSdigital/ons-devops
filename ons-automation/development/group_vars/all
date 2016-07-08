@@ -1,4 +1,6 @@
 ---
+  ansible_distribution: RedHat
+  ansible_os_family: RedHat
   elasticsearch_heap_size: 1g
   elasticsearch_cluster_name: development
   elasticsearch_network_host: "['_enp0s8_', '_local_']"

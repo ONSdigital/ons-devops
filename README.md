@@ -1,4 +1,4 @@
-## ONS-Registers Vagrant Environment Setup
+# ONS-Registers Vagrant Environment Setup
 
 The purpose of this project is to provide the capability to provision vagrant hosted environments (e.g development) for ONS Registers project. 
 ONS Registers project comprises of 2 separate streams:
@@ -8,19 +8,19 @@ ONS Registers project comprises of 2 separate streams:
 
 This Vagrant provisioning will cater both the needs.
 
-## Pre-requisites
+# Pre-requisites
 
 - Vagrant (https://www.vagrantup.com/downloads.html)
 - Virtualbox (https://www.virtualbox.org/wiki/Downloads)
 
 Note: It is recommended to use latest version of Vagrant i.e. >= 1.8.4, as earlier versions had issues with Ansible 2.0.
 
-## Important files:
+# Important files:
 
- - **nodes.yml**: The file contains all the details of the nodes which you can provision via vagrant up <nodename> command. For more details see the comments in the file https://github.com/ONSdigital/ons-devops/blob/ons-devops-new/nodes.yaml .
- - **ons-automation/development/inventory_dev**: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
+ - nodes.yml: The file contains all the details of the nodes which you can provision via vagrant up < nodename > command. For more details see the comments in the file https://github.com/ONSdigital/ons-devops/blob/ons-devops-new/nodes.yaml .
+ - ons-automation/development/inventory_dev: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
 
-## ONS Business Index environment
+# ONS Business Index environment
 ----------------------------------
 
 ONS Business Index development environment includes following tools to be setup:
@@ -30,7 +30,7 @@ ONS Business Index development environment includes following tools to be setup:
 - Apache Cassandra  (http://cassandra.apache.org/)
 
 ## Hardware Requirements
-Installing the above tools can be resource heavy. A typical setup requires, 4Gb of RAM and 2 Cores CPU. For the sake of simplicity the CPU and RAM
+Installing the above tools can be resource heavy. A typical setup requires, 4GB of RAM and 2 Cores CPU. For the sake of simplicity the CPU and RAM
 is made configurable via nodes.yaml file and can be modified as below:
 
 ```
@@ -51,7 +51,7 @@ playbook with the same name has been provided. Following roles can be provided t
 - client               (Elasticsearch client node)
 - master               (Elasticsearch master node)
 
-# Usage example
+## Usage example
 
 ## Provisioning environment for the first time
 
@@ -85,7 +85,7 @@ sudo su
 vagrant provision ons-business-dev
 ```
 
-# What's inside the box
+## What's inside the box
 
 ## Installation location
 
