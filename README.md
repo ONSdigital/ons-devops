@@ -63,8 +63,7 @@ Start the development VM (creating it if necessary):
 $ vagrant up ons-business-dev
 ```
 
-## Log in to the development VM
-
+Log in to the development VM
 ```
 $ vagrant ssh ons-business-dev
 ```
@@ -74,17 +73,32 @@ Above command will use the default 'vagrant' user to log in. In order to acquire
 ```
 sudo -i
 ```
-
 or 
-
 ```
 sudo su
 ```
 
-## Update and apply the ansible code to the development vagrant box e.g. ons-business-dev
-
+Update and apply the ansible code to the development vagrant box e.g. ons-business-dev
 ```
 vagrant provision ons-business-dev
+```
+
+Stop all VMs
+```
+vagrant halt
+```
+or to stop specific VM
+```
+vagrant halt < nodename >
+```
+
+Delete all VMs
+```
+vagrant destroy
+```
+or to destroy specific VM
+```
+vagrant destroy < nodename >
 ```
 
 ## What's inside the box
