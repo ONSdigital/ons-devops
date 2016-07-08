@@ -4,6 +4,7 @@
 
 
 # Packages #
+ons-automation/*.retry
 ons-automation/roles/geerlingguy.java
 ons-automation/roles/geerlingguy.elasticsearch
 ons-automation/roles/geerlingguy.firewall

@@ -2,7 +2,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 require 'yaml'
-nodes = YAML.load_file('nodes.yaml')
+nodes = YAML.load_file('nodes.yml')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
