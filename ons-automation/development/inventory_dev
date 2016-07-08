@@ -1,0 +1,14 @@
+[es-dataservers]
+ons-esdata ansible_connection=local
+
+[es-clientservers]
+ons-esclient ansible_connection=local
+
+[es-masterservers]
+ons-esmaster ansible_connection=local
+
+[es-standalone]
+es-standalone ansible_connection=local
+
+[ons-devservers]
+ons-business-dev ansible_connection=local

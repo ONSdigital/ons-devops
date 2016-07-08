@@ -1,0 +1,3 @@
+---
+elasticsearch_node_data: 'false'
+elasticsearch_node_client: 'true'
