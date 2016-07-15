@@ -1,7 +1,0 @@
----
-- hosts: all
-  gather_facts: no
-
-  roles:
-  - geerlingguy.java
-  - geerlingguy.elasticsearch

@@ -6,6 +6,7 @@ ons-esclient ansible_connection=local
 
 [es-masterservers]
 ons-esmaster ansible_connection=local
+ons-esmaster02 ansible_connection=local
 
 [es-standalone]
 es-standalone ansible_connection=local

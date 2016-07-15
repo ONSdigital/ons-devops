@@ -1,71 +1,83 @@
-# ONS-Registers Vagrant Environment Setup
+# ONS-Registers Vagrant Environments
 
-The purpose of this project is to provide the capability to provision vagrant hosted environments (e.g development) for ONS Registers project. 
-ONS Registers project comprises of 2 separate streams:
+The project models local vagrant hosted equivalents of the ONS environments. It caters for both the streams:
 
 - Address Index
 - Business Index
 
-This Vagrant provisioning will cater both the needs.
+## Pre-requisites
 
-# Pre-requisites
-
-- Vagrant (https://www.vagrantup.com/downloads.html)
-- Virtualbox (https://www.virtualbox.org/wiki/Downloads)
+- [Vagrant](https://www.vagrantup.com/downloads.html)
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Git](https://git-scm.com/downloads)
 
 Note: It is recommended to use latest version of Vagrant i.e. >= 1.8.4, as earlier versions had issues with Ansible 2.0.
 
-# Important files:
-
- - [nodes.yml] (nodes.yml): The file contains all the details of the nodes which you can provision via vagrant up < nodename > command. For more details see the comments in the file.
- - ons-automation/development/inventory_dev: The file contains the information about the groups of inventories in Ansible. This will be used to separate the variables for different environments and groups of hosts.
-
-# ONS Business Index environment
-
-ONS Business Index development environment includes following tools to be setup:
-
-- Apache Hadoop  (http://hadoop.apache.org/)
-- Apache Spark  (http://spark.apache.org/)
-- Apache Cassandra  (http://cassandra.apache.org/)
-
-## Hardware Requirements
-Installing the above tools can be resource heavy. A typical setup requires, 4GB of RAM and 2 Cores CPU. For the sake of simplicity the CPU and RAM
-is made configurable via nodes.yaml file and can be modified as below:
+## Nodes
+ - [nodes.yml] (nodes.yml): The file contains the details of the virtual machines that can be provisioned via this project.
+The format of the file is shown below:
 
 ```
-ons-business-dev:
-  box: geerlingguy/centos7
+< nodename >:
+  box: < boxname >
   server:
-    hostname: ons-business-dev
-    memory: 6144
-    vcpu: 2
+    hostname: < hostname of the box >
+    memory: < amount of memory allocated to the VM >
+    vcpu: < virtual CPU allocated to the VM >
+    ip: < IP address can be provided if it is needed >
   provisioning:
-    role: ons-business-dev
-    environment: vagrant
+    role: < Role that is served by the VM >
+    environment: < environment that is being created >
 ```
 
-NOTE: In the above configuration ROLE is very important as this will decide which ansible playbook to execute. It should not be modified unless a custom 
-playbook with the same name has been provided. Following roles can be provided to a vagrant box:
+## Roles
+
+Roles define the configuration of the virtual machine being provisioned.
+At the moment following roles can be given to a vagrant box:
 
 - ons-business-dev     (ONS Business Index development environment)
-- es-standalone        (Elasticsearch standalone installation) 
-- data                 (Elasticsearch Data node)
-- client               (Elasticsearch client node)
-- master               (Elasticsearch master node)
+- es-standalone        (Elasticsearch standalone installation)
+- elasticsearch        (Elasticsearch cluster provisioning)
 
-## Usage example
+## Environments and Configurations
 
-## Provisioning environment for the first time
+### Inventory
 
-Start the development VM (creating it if necessary):
+The inventory file located in `ons-automation/development/inventory_dev` (this is the inventory file for development environment only) 
+contains the host entries and their groups. e.g.
 
 ```
-$ vagrant up ons-business-dev
+[es-masterservers]
+ons-esmaster ansible_connection=local
+```
+
+This is the standard group format from ansible. This ensures that `ons-esmaster` node belongs to the list `es-masterservers` group. 
+The groups are created to ensure same configuration across the similar set of nodes. More about ansible inventories [here](http://docs.ansible.com/ansible/intro_inventory.html). The inventory structure followed currently is shown below:
+
+```
+├── ons-automation
+│   ├── development
+│   │   ├── group_vars
+│   │   │   ├── all
+│   │   │   ├── es-clientservers.yml
+│   │   │   ├── es-dataservers.yml
+│   │   │   └── es-masterservers.yml
+│   │   ├── host_vars
+│   │   └── inventory_dev
+```
+
+NOTE: Make sure the nodenames are same across the nodes.yml and inventory file.
+
+## Vagrant Usage example
+
+Start the development VM (creating it if necessary):
+```
+$ vagrant up < nodename >
 ```
 
 Log in to the development VM
 ```
-$ vagrant ssh ons-business-dev
+$ vagrant ssh < nodename >
 ```
 
 Above command will use the default 'vagrant' user to log in. In order to acquire root access execute any of the commmands below (no password required):
@@ -78,9 +90,9 @@ or
 sudo su
 ```
 
-Update and apply the ansible code to the development vagrant box e.g. ons-business-dev
+Update and apply the ansible code to the development vagrant box.
 ```
-vagrant provision ons-business-dev
+vagrant provision < nodename >
 ```
 
 Stop all VMs
@@ -101,34 +113,23 @@ or to destroy specific VM
 vagrant destroy < nodename >
 ```
 
-## What's inside the box
+## Details
 
-## Installation location
+The [Ansible](https://www.ansible.com/) environment is prepared during provisioning for use in the guest VM.
 
-Tools are installed in `/opt` directory.
+On the Vagrant hosts:
 
-## System services
+- The `ons-automation/roles` will be cloned from either [Ansible Galaxy](https://galaxy.ansible.com/intro) or from the ONS github.
+- The `ons-automation/#{environment}/` will be cloned from github. This will be used for configuration of the guest VM.
 
-Following services are available and will start automatically at boot time:
+In the guest VM:
 
-- dfs-name-node
-- dfs-data-node
-- yarn-resource-manager
-- yarn-node-manager
-- apache-cassandra
+- Ansible will be installed.
 
-To manage above services use `service` or 'systemctl' command, for example:
+Ansible is then invoked with the playbook path set to `ons-automation/#{cfgOptions['provisioning']['role']}/playbook.yml'.
 
-```
-service dfs-name-node restart
-```
+The dedicated playbook for each of the roles in the [Roles](##Roles) section has seprate README files to describe its details.
 
-or
-
-```
-systemctl restart dfs-name-node
-```
-
-## HDFS configuration
-
-HDFS is configured to store 1 replica of data under `/var/local/hadoop/dfs` directory.
+- [ons-business-dev](ons-automation/ons-business-dev)
+- [elasticsearch](ons-automation/elasticsearch)
+- [es-standalone](ons-automation/es-standalone)

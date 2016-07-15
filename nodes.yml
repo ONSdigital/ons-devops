@@ -29,7 +29,7 @@ acs:
     vcpu: 1
   provisioning:
     role: ansible
-    environment: vagrant
+    environment: development
 
 es-standalone:
   box: geerlingguy/centos7
@@ -39,7 +39,7 @@ es-standalone:
     vcpu: 2
   provisioning:
     role: es-standalone
-    environment: vagrant
+    environment: development
 
 ons-esdata:
   box: geerlingguy/centos7
@@ -48,28 +48,39 @@ ons-esdata:
     memory: 2048
     vcpu: 2
   provisioning:
-    role: data
-    environment: vagrant
+    role: elasticsearch
+    environment: development
 
 ons-esclient:
   box: geerlingguy/centos7
   server:
     hostname: ons-esclient
-    memory: 1024
+    memory: 2048
     vcpu: 1
   provisioning:
-    role: client
-    environment: vagrant
+    role: elasticsearch
+    environment: development
 
 ons-esmaster:
   box: geerlingguy/centos7
   server:
     hostname: ons-esmaster
-    memory: 1024
+    memory: 2048
+    vcpu: 1
+    ip: 192.168.1.4
+  provisioning:
+    role: elasticsearch
+    environment: development
+
+ons-esmaster02:
+  box: geerlingguy/centos7
+  server:
+    hostname: ons-esmaster02
+    memory: 2048
     vcpu: 1
   provisioning:
-    role: master
-    environment: vagrant
+    role: elasticsearch
+    environment: development
 
 ons-business-dev:
   box: geerlingguy/centos7
@@ -79,4 +90,4 @@ ons-business-dev:
     vcpu: 2
   provisioning:
     role: ons-business-dev
-    environment: vagrant
+    environment: development
