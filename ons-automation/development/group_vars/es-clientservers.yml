@@ -4,7 +4,6 @@ elasticsearch_node_client: 'true'
 elasticsearch_node_master: 'false'
 elasticsearch_network_http_enabled: 'true'
 
-
-firewall_allowed_tcp_ports:
-- '9300'
-- '9200'
+firewalld_allow_ports:
+- port: 9200/tcp
+- port: 9300/tcp

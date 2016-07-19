@@ -1,4 +1,4 @@
 ---
 - src: geerlingguy.java
 - src: geerlingguy.elasticsearch
-- src: geerlingguy.firewall
+- src: marcelnijenhof.firewalld

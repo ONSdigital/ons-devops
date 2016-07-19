@@ -32,7 +32,7 @@ acs:
     environment: development
 
 es-standalone:
-  box: geerlingguy/centos7
+  box: relativkreativ/centos-7-minimal
   server:
     hostname: es-standalone
     memory: 2048
@@ -42,7 +42,7 @@ es-standalone:
     environment: development
 
 ons-esdata:
-  box: geerlingguy/centos7
+  box: relativkreativ/centos-7-minimal
   server:
     hostname: ons-esdata
     memory: 2048
@@ -52,7 +52,7 @@ ons-esdata:
     environment: development
 
 ons-esclient:
-  box: geerlingguy/centos7
+  box: relativkreativ/centos-7-minimal
   server:
     hostname: ons-esclient
     memory: 2048
@@ -62,7 +62,7 @@ ons-esclient:
     environment: development
 
 ons-esmaster:
-  box: geerlingguy/centos7
+  box: relativkreativ/centos-7-minimal
   server:
     hostname: ons-esmaster
     memory: 2048
@@ -90,4 +90,14 @@ ons-business-dev:
     vcpu: 2
   provisioning:
     role: ons-business-dev
+    environment: development
+
+jenkins-ci:
+  box: relativkreativ/centos-7-minimal
+  server:
+    hostname: jenkins-ci
+    memory: 2048
+    vcpu: 2
+  provisioning:
+    role: jenkins-ci
     environment: development

@@ -35,9 +35,9 @@ The format of the file is shown below:
 Roles define the configuration of the virtual machine being provisioned.
 At the moment following roles can be given to a vagrant box:
 
-- ons-business-dev     (ONS Business Index development environment)
-- es-standalone        (Elasticsearch standalone installation)
-- elasticsearch        (Elasticsearch cluster provisioning)
+- [ons-business-dev](ons-automation/ons-business-dev): (ONS Business Index development environment)
+- [elasticsearch](ons-automation/elasticsearch): (Elasticsearch standalone installation)
+- [es-standalone](ons-automation/es-standalone): (Elasticsearch cluster provisioning)
 
 ## Environments and Configurations
 

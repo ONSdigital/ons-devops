@@ -12,3 +12,11 @@
   notify: 
   - reload daemon
   - restart elasticsearch
+
+- name: Check if path exist.
+  stat: path=/usr/share/elasticsearch/plugins/head
+  register: check_path
+
+- name: Include elasticsearch head install
+  command: /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+  when: (ansible_virtualization_type == "virtualbox" and "client" in ansible_hostname and check_path.stat.exists == false)

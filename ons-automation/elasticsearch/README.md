@@ -97,4 +97,10 @@ ons-automation
 - es-dataservers.yml: Contains parameters defined for data servers.
 - es-masterservers.yml: Contains parameters defined for master servers.
 
+## How to access elasticsearch cluster?
+elasticsearch-head is a web front end for browsing and interacting with an Elastic Search cluster.
 
+This is pre-installed with the elasticsearch client nodes. The plugin can be accessed via the following url:
+http://<IP address of the client node>:9200/_plugin/head
+
+More information on the plugin [here](https://mobz.github.io/elasticsearch-head/)

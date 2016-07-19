@@ -1,4 +1,0 @@
----
-- set_fact:
-  role: data
-  environment: vagrant 

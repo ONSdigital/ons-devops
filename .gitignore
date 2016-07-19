@@ -1,13 +1,12 @@
 # OS generated files #
 .DS_Store
 .vagrant
-
+.gitignore
 
 # Packages #
 ons-automation/*.retry
 ons-automation/roles/geerlingguy.java
 ons-automation/roles/geerlingguy.elasticsearch
-ons-automation/roles/geerlingguy.firewall
-ons-automation/roles/elasticsearch
-ons-automation/roles/elasticsearch-head
-pcfdev
+ons-automation/roles/bbaassssiiee.artifactory/
+ons-automation/roles/marcelnijenhof.firewalld/
+
