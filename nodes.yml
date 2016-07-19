@@ -12,17 +12,14 @@
 #    environment: vagrant
 # 
 #  Nodename: name of the node that will be recognized by vagrant up command
-#  boxname: name of the base box that will be used to provision the node. By defalut 'geerlingguy/centos7' is used as that adheres to the Vagrant standards. 
-#           Centos/7 box has some known issues as mentioned in (https://seven.centos.org/2016/06/updated-centos-vagrant-images-available/) centos website. 
-#           These issues may be a problem at the later phase of development where we will be using such functionalities. 
-#           Hence to keep it simple please use boxes that adheres to vagrant standards.
+#  boxname: name of the base box that will be used to provision the node. Default:'relativkreativ/centos-7-minimal'. 
 #  memory: Memory can be modified for each box.  
 #  vcpu: same as memory it can also be modified.
 #  role: This is the role of the node that ansible will use to provision. Node role should be same as the playbooks created inside ons-automation folder.
 #  
 
 acs:
-  box: geerlingguy/centos7
+  box: relativkreativ/centos-7-minimal
   server:
     hostname: acs
     memory: 2048
@@ -68,16 +65,6 @@ ons-esmaster:
     memory: 2048
     vcpu: 1
     ip: 192.168.1.4
-  provisioning:
-    role: elasticsearch
-    environment: development
-
-ons-esmaster02:
-  box: geerlingguy/centos7
-  server:
-    hostname: ons-esmaster02
-    memory: 2048
-    vcpu: 1
   provisioning:
     role: elasticsearch
     environment: development

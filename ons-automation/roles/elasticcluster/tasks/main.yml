@@ -1,4 +1,7 @@
 ---
+- name: Install network tools
+  yum: name=net-tools state=latest
+
 - name: Configure Elasticsearch system configuration.
   template: src=elasticsearch.j2 dest=/etc/sysconfig/elasticsearch owner=root group=root mode=0644
   notify: restart elasticsearch

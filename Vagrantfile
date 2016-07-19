@@ -23,8 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.network "private_network", type: "dhcp"
       end
 
-      node.vm.provision "shell", path: "setup.sh"
-
       node.vm.provider "virtualbox" do |v|
         v.name = cfgOptions['server']['hostname'] if cfgOptions['server']['hostname']
         v.memory = cfgOptions['server']['memory'] if cfgOptions['server']['memory']
