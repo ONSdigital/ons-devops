@@ -6,7 +6,7 @@
   roles:
   - linux
   - { role: apache-hadoop, apache_hadoop_version: 2.6.4 }
-  - { role: apache-spark, apache_spark_version: 1.6.1 }
+  - { role: apache-spark, apache_spark_version: 1.6.2 }
   - { role: apache-cassandra, apache_cassandra_version: 3.7 }
 
   tasks:

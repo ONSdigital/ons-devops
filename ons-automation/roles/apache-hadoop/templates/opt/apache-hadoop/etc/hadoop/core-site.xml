@@ -2,6 +2,6 @@
 <configuration>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://{{ ansible_enp0s8['ipv4']['address'] }}:8020</value>
+    <value>hdfs://192.168.33.100:8020</value>
   </property>
 </configuration>
