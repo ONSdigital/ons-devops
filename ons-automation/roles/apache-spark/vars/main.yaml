@@ -1,5 +1,5 @@
 # Apache Spark variables
 
-apache_spark_version: 1.6.1
+apache_spark_version: 1.6.2
 apache_spark_home: /opt/apache-spark
 apache_hadoop_home: /opt/hadoop

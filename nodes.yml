@@ -75,6 +75,7 @@ ons-business-dev:
     hostname: ons-business-dev
     memory: 6144
     vcpu: 2
+    ip: 192.168.33.100
   provisioning:
     role: ons-business-dev
     environment: development
